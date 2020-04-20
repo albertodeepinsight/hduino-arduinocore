@@ -1,0 +1,162 @@
+# Copyright (c) 2014-2017 Arduino LLC.  All right reserved.
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+menu.cpu=Microcontroller
+menu.clock=Clock Source
+menu.usb=USB Config
+menu.serial=Serial Config
+menu.bootloader=Bootloader Size
+menu.timer=Timer PWM Frequency
+menu.float=Floating Point
+menu.config=Build Options
+
+
+# HDuino Poseidon
+hduino_poseidon.name=HDuino Poseidon
+hduino_poseidon.vid.0=0x16D0
+hduino_poseidon.pid.0=0x0557
+hduino_poseidon.vid.1=0x16D0
+hduino_poseidon.pid.1=0x0856
+hduino_poseidon.vid.2=0x16D0
+hduino_poseidon.pid.2=0x0B41
+hduino_poseidon.vid.3=0x16D0
+hduino_poseidon.pid.3=0x0B40
+hduino_poseidon.vid.4=0x16D0
+hduino_poseidon.pid.4=0x0A0C
+hduino_poseidon.vid.5=0x16D0
+hduino_poseidon.pid.5=0x0856
+hduino_poseidon.build.usb_manufacturer="Deep Insight"
+hduino_poseidon.build.board=SAMD_ZERO
+hduino_poseidon.build.core=arduino
+hduino_poseidon.build.variant=Poseidon
+hduino_poseidon.build.variant_system_lib=
+hduino_poseidon.build.vid=0x16D0
+hduino_poseidon.upload.protocol=sam-ba
+hduino_poseidon.bootloader.tool=arduino:openocd
+hduino_poseidon.menu.float.default=Print & String use auto-promoted doubles only
+hduino_poseidon.menu.float.default.build.floatconfig=FLOAT_BOTH_DOUBLES_ONLY
+hduino_poseidon.menu.float.print=Print uses separate singles and doubles
+hduino_poseidon.menu.float.print.build.floatconfig=FLOAT_PRINT_SINGLES_DOUBLES
+hduino_poseidon.menu.float.string=String uses separate singles and doubles
+hduino_poseidon.menu.float.string.build.floatconfig=FLOAT_STRING_SINGLES_DOUBLES
+hduino_poseidon.menu.float.both=Print & String use separate singles and doubles
+hduino_poseidon.menu.float.both.build.floatconfig=FLOAT_BOTH_SINGLES_DOUBLES
+hduino_poseidon.menu.config.disabled=config.h disabled
+hduino_poseidon.menu.config.disabled.build.buildconfig=CONFIG_H_DISABLED
+hduino_poseidon.menu.config.enabled=config.h enabled (mostly code size reductions)
+hduino_poseidon.menu.config.enabled.build.buildconfig=CONFIG_H_ENABLED
+hduino_poseidon.menu.clock.crystal_32k=32KHZ_CRYSTAL
+hduino_poseidon.menu.clock.crystal_32k.build.clockconfig=CLOCKCONFIG_32768HZ_CRYSTAL
+hduino_poseidon.menu.clock.crystal_hs=HIGH_SPEED_CRYSTAL
+hduino_poseidon.menu.clock.crystal_hs.build.clockconfig=CLOCKCONFIG_HS_CRYSTAL
+hduino_poseidon.menu.clock.internal=INTERNAL_OSCILLATOR
+hduino_poseidon.menu.clock.internal.build.clockconfig=CLOCKCONFIG_INTERNAL
+hduino_poseidon.menu.clock.internal_usb=INTERNAL_USB_CALIBRATED_OSCILLATOR
+hduino_poseidon.menu.clock.internal_usb.build.clockconfig=CLOCKCONFIG_INTERNAL_USB
+hduino_poseidon.menu.timer.timer_732Hz=732.4Hz (16-bit)
+hduino_poseidon.menu.timer.timer_732Hz.build.timerconfig=TIMER_732Hz
+hduino_poseidon.menu.timer.timer_366Hz=366.2Hz (16-bit)
+hduino_poseidon.menu.timer.timer_366Hz.build.timerconfig=TIMER_366Hz
+hduino_poseidon.menu.timer.timer_244Hz=244.1Hz (16-bit)
+hduino_poseidon.menu.timer.timer_244Hz.build.timerconfig=TIMER_244Hz
+hduino_poseidon.menu.timer.timer_183Hz=183.1Hz (16-bit)
+hduino_poseidon.menu.timer.timer_183Hz.build.timerconfig=TIMER_183Hz
+hduino_poseidon.menu.timer.timer_146Hz=146.5Hz (16-bit)
+hduino_poseidon.menu.timer.timer_146Hz.build.timerconfig=TIMER_146Hz
+hduino_poseidon.menu.timer.timer_122Hz=122.1Hz (16-bit)
+hduino_poseidon.menu.timer.timer_122Hz.build.timerconfig=TIMER_122Hz
+hduino_poseidon.menu.timer.timer_105Hz=104.6Hz (16-bit)
+hduino_poseidon.menu.timer.timer_105Hz.build.timerconfig=TIMER_105Hz
+hduino_poseidon.menu.timer.timer_81Hz=81.38Hz (16-bit)
+hduino_poseidon.menu.timer.timer_81Hz.build.timerconfig=TIMER_81Hz
+hduino_poseidon.menu.timer.timer_61Hz=61.04Hz (16-bit)
+hduino_poseidon.menu.timer.timer_61Hz.build.timerconfig=TIMER_61Hz
+hduino_poseidon.menu.timer.timer_31Hz=30.52Hz (16-bit)
+hduino_poseidon.menu.timer.timer_31Hz.build.timerconfig=TIMER_31Hz
+hduino_poseidon.menu.timer.timer_187500Hz=187500Hz (8-bit)
+hduino_poseidon.menu.timer.timer_187500Hz.build.timerconfig=TIMER_187500Hz
+hduino_poseidon.menu.timer.timer_93750Hz=93750Hz (8-bit)
+hduino_poseidon.menu.timer.timer_93750Hz.build.timerconfig=TIMER_93750Hz
+hduino_poseidon.menu.timer.timer_62500Hz=62500Hz (8-bit)
+hduino_poseidon.menu.timer.timer_62500Hz.build.timerconfig=TIMER_62500Hz
+hduino_poseidon.menu.timer.timer_37500Hz=37500Hz (8-bit)
+hduino_poseidon.menu.timer.timer_37500Hz.build.timerconfig=TIMER_37500Hz
+hduino_poseidon.menu.timer.timer_20833Hz=20833Hz (8-bit)
+hduino_poseidon.menu.timer.timer_20833Hz.build.timerconfig=TIMER_20833Hz
+hduino_poseidon.menu.timer.timer_12500Hz=12500Hz (8-bit)
+hduino_poseidon.menu.timer.timer_12500Hz.build.timerconfig=TIMER_12500Hz
+hduino_poseidon.menu.timer.timer_7500Hz=7500Hz (8-bit)
+hduino_poseidon.menu.timer.timer_7500Hz.build.timerconfig=TIMER_7500Hz
+hduino_poseidon.menu.timer.timer_4166Hz=4166Hz (8-bit)
+hduino_poseidon.menu.timer.timer_4166Hz.build.timerconfig=TIMER_4166Hz
+hduino_poseidon.menu.timer.timer_2930Hz=2930Hz (8-bit)
+hduino_poseidon.menu.timer.timer_2930Hz.build.timerconfig=TIMER_2930Hz
+hduino_poseidon.menu.timer.timer_1465Hz=1465Hz (8-bit, 16-bit for D51)
+hduino_poseidon.menu.timer.timer_1465Hz.build.timerconfig=TIMER_1465Hz
+hduino_poseidon.menu.cpu.saml21g18b=SAML21G18B
+hduino_poseidon.menu.cpu.saml21g18b.upload.maximum_size=253952
+hduino_poseidon.menu.cpu.saml21g18b.build.mcu=cortex-m0plus
+hduino_poseidon.menu.cpu.saml21g18b.build.mathlib=arm_cortexM0l_math
+hduino_poseidon.menu.cpu.saml21g18b.build.f_cpu=48000000L
+hduino_poseidon.menu.cpu.saml21g18b.build.usb_product="Xeno Mini L21"
+hduino_poseidon.menu.cpu.saml21g18b.build.extra_flags=-D__SAML21G18B__ {build.usb_flags} -DARM_MATH_CM0PLUS
+hduino_poseidon.menu.cpu.saml21g18b.build.ldscript=flash_256KB.ld
+hduino_poseidon.menu.cpu.saml21g18b.build.openocdscript=openocd_scripts/SAML21G18B.cfg
+hduino_poseidon.menu.cpu.saml21g18b.bootloader.file=zero/binaries/sam_ba_Xeno_Mini_SAML21G18B.bin
+hduino_poseidon.menu.bootloader.8kb=8KB_BOOTLOADER
+hduino_poseidon.menu.bootloader.8kb.build.bootloader_size=__8KB_BOOTLOADER__
+hduino_poseidon.menu.bootloader.8kb.build.ldscript_path=linker_scripts/gcc/8KB_Bootloader
+hduino_poseidon.menu.bootloader.8kb.upload.tool=MattairTech_Arduino:bossac
+hduino_poseidon.menu.bootloader.8kb.upload.use_1200bps_touch=true
+hduino_poseidon.menu.bootloader.8kb.upload.wait_for_upload_port=true
+hduino_poseidon.menu.bootloader.8kb.upload.native_usb=true
+hduino_poseidon.menu.bootloader.0kb=NO_BOOTLOADER
+hduino_poseidon.menu.bootloader.0kb.build.bootloader_size=__NO_BOOTLOADER__
+hduino_poseidon.menu.bootloader.0kb.build.ldscript_path=linker_scripts/gcc/No_Bootloader
+hduino_poseidon.menu.bootloader.0kb.upload.tool=arduino:openocd
+hduino_poseidon.menu.bootloader.0kb.upload.use_1200bps_touch=false
+hduino_poseidon.menu.bootloader.0kb.upload.wait_for_upload_port=false
+hduino_poseidon.menu.bootloader.0kb.upload.native_usb=false
+hduino_poseidon.menu.serial.one_uart=ONE_UART_ONE_WIRE_ONE_SPI
+hduino_poseidon.menu.serial.one_uart.build.serialcom_uart=ONE_UART
+hduino_poseidon.menu.serial.one_uart.build.serialcom_wire=ONE_WIRE
+hduino_poseidon.menu.serial.one_uart.build.serialcom_spi=ONE_SPI
+hduino_poseidon.menu.serial.one_uart_two_spi=ONE_UART_ONE_WIRE_TWO_SPI
+hduino_poseidon.menu.serial.one_uart_two_spi.build.serialcom_uart=ONE_UART
+hduino_poseidon.menu.serial.one_uart_two_spi.build.serialcom_wire=ONE_WIRE
+hduino_poseidon.menu.serial.one_uart_two_spi.build.serialcom_spi=TWO_SPI
+hduino_poseidon.menu.serial.one_uart_two_wire=ONE_UART_TWO_WIRE_ONE_SPI
+hduino_poseidon.menu.serial.one_uart_two_wire.build.serialcom_uart=ONE_UART
+hduino_poseidon.menu.serial.one_uart_two_wire.build.serialcom_wire=TWO_WIRE
+hduino_poseidon.menu.serial.one_uart_two_wire.build.serialcom_spi=ONE_SPI
+hduino_poseidon.menu.usb.cdc=CDC_ONLY
+hduino_poseidon.menu.usb.cdc.build.usbcom=CDC_ONLY
+hduino_poseidon.menu.usb.cdc.build.pid=0x0557
+hduino_poseidon.menu.usb.cdc_hid=CDC_HID
+hduino_poseidon.menu.usb.cdc_hid.build.usbcom=CDC_HID
+hduino_poseidon.menu.usb.cdc_hid.build.pid=0x0856
+hduino_poseidon.menu.usb.withcdc=WITH_CDC
+hduino_poseidon.menu.usb.withcdc.build.usbcom=WITH_CDC
+hduino_poseidon.menu.usb.withcdc.build.pid=0x0B41
+hduino_poseidon.menu.usb.hid=HID_ONLY
+hduino_poseidon.menu.usb.hid.build.usbcom=HID_ONLY
+hduino_poseidon.menu.usb.hid.build.pid=0x0B40
+hduino_poseidon.menu.usb.nocdc=WITHOUT_CDC
+hduino_poseidon.menu.usb.nocdc.build.usbcom=WITHOUT_CDC
+hduino_poseidon.menu.usb.nocdc.build.pid=0x0A0C
+hduino_poseidon.menu.usb.none=USB_DISABLED
+hduino_poseidon.menu.usb.none.build.usbcom=USB_DISABLED
+hduino_poseidon.menu.usb.none.build.pid=0x0856
