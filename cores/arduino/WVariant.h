@@ -354,7 +354,7 @@ typedef enum _EPioPeripheral
 
 /* PinDescription table */
 #if defined(PIN_DESCRIPTION_TABLE_SIMPLE)
-  #if !defined(MATTAIRTECH_ARDUINO_SAMD_VARIANT_COMPLIANCE) || (MATTAIRTECH_ARDUINO_SAMD_VARIANT_COMPLIANCE < 10618)
+  #if !defined(HDUINO_ARDUINO_SAMD_VARIANT_COMPLIANCE) || (HDUINO_ARDUINO_SAMD_VARIANT_COMPLIANCE < 10618)
     #error "The PinDescription table in the variant.cpp file of your board variant must be updated (MATTAIRTECH_ARDUINO_SAMD_VARIANT_COMPLIANCE >= 10618) in order to use PIN_DESCRIPTION_TABLE_SIMPLE. See VARIANT_COMPLIANCE_CHANGELOG."
   #endif
   #if !(SAMD11)
@@ -378,7 +378,7 @@ typedef struct _PinDescription
   uint8_t         ulPinType ;	                // Must be 8 bits
   uint8_t         ulPeripheralAttribute ;	// Must be 8 bit bitfield
   uint32_t        ulPinAttribute ;	        // Must be 32 bit bitfield
-#if defined(MATTAIRTECH_ARDUINO_SAMD_VARIANT_COMPLIANCE) && (MATTAIRTECH_ARDUINO_SAMD_VARIANT_COMPLIANCE >= 10608)
+#if defined(HDUINO_ARDUINO_SAMD_VARIANT_COMPLIANCE) && (HDUINO_ARDUINO_SAMD_VARIANT_COMPLIANCE >= 10608)
   uint8_t         ulTCChannel ;	                // Must be 8 bits
   uint8_t         ulADCChannelNumber ;	        // Must be 8 bits
   uint8_t         ulExtInt ;	                // Must be 8 bits

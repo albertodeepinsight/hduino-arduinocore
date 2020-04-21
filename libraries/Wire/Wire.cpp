@@ -360,10 +360,10 @@ void TwoWire::onService(void)
    * These values should be different on some variants!
    */
   #ifndef PERIPH_WIRE
-    #define PERIPH_WIRE          sercom3
-    #define WIRE_IT_HANDLER      SERCOM3_Handler
+    #define PERIPH_WIRE          sercom2
+    #define WIRE_IT_HANDLER      SERCOM_Handler
   #endif // PERIPH_WIRE
-  TwoWire Wire(&PERIPH_WIRE, PIN_WIRE_SDA, PIN_WIRE_SCL);
+  TwoWire Wire(&PERIPH_WIRE, PIN_WIREs_SDA, PIN_WIREs_SCL);
 
   #if (SAMD51)
     void WIRE_STOP_DETECTED_HANDLER(void) {

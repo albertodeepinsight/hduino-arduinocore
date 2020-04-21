@@ -20,7 +20,7 @@
 #ifndef Arduino_h
 #define Arduino_h
 
-#define MATTAIRTECH_CORE
+#define HDUINO_CORE
 
 #include <stdbool.h>
 #include <stdint.h>
