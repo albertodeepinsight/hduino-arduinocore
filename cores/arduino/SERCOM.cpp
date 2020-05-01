@@ -89,26 +89,26 @@ void SERCOM::initUART(SercomUartMode mode, SercomUartSampleRate sampleRate, uint
       sampleRateValue = 8;
     }
 
-#if 1
-    // Asynchronous arithmetic mode
-    // 65535 * ( 1 - sampleRateValue * baudrate / SercomClock);
-    // 65535 - 65535 * (sampleRateValue * baudrate / SercomClock));
-    // sercom->USART.BAUD.reg = 65535.0f * ( 1.0f - (float)(sampleRateValue) * (float)(baudrate) / (float)(SercomCoreClock));  // this pulls in 3KB of floating point math code
-    // make numerator much larger than denominator so result is integer (avoid floating point).
-    uint64_t numerator = ((sampleRateValue * (uint64_t)baudrate) << 32); // 32 bits of shifting ensures no loss of precision.
-    uint64_t ratio = divide64(numerator, SercomClock);
-    uint64_t scale = ((uint64_t)1 << 32) - ratio;
-    uint64_t baudValue = (65536 * scale) >> 32;
-    sercom->USART.BAUD.reg = baudValue;
-#else
-    // Asynchronous fractional mode (Table 24-2 in datasheet)
-    //   BAUD = fref / (sampleRateValue * fbaud)
-    // (multiply by 8, to calculate fractional piece)
-    uint32_t baudTimes8 = (SercomClock * 8) / (sampleRateValue * baudrate);
+    if(sercom == SERCOM5){
+        // Asynchronous arithmetic mode
+        // 65535 * ( 1 - sampleRateValue * baudrate / SercomClock);
+        // 65535 - 65535 * (sampleRateValue * baudrate / SercomClock));
+        // sercom->USART.BAUD.reg = 65535.0f * ( 1.0f - (float)(sampleRateValue) * (float)(baudrate) / (float)(SercomCoreClock));  // this pulls in 3KB of floating point math code
+        // make numerator much larger than denominator so result is integer (avoid floating point).
+        uint64_t numerator = ((sampleRateValue * (uint64_t)baudrate) << 32); // 32 bits of shifting ensures no loss of precision.
+        uint64_t ratio = divide64(numerator, SercomClock);
+        uint64_t scale = ((uint64_t)1 << 32) - ratio;
+        uint64_t baudValue = (65536 * scale) >> 32;
+        sercom->USART.BAUD.reg = baudValue;
+    }else{
+        // Asynchronous fractional mode (Table 24-2 in datasheet)
+        //   BAUD = fref / (sampleRateValue * fbaud)
+        // (multiply by 8, to calculate fractional piece)
+        uint32_t baudTimes8 = (SercomClock * 8) / (sampleRateValue * baudrate);
 
-    sercom->USART.BAUD.FRAC.FP   = (baudTimes8 % 8);
-    sercom->USART.BAUD.FRAC.BAUD = (baudTimes8 / 8);
-#endif
+        sercom->USART.BAUD.FRAC.FP   = (baudTimes8 % 8);
+        sercom->USART.BAUD.FRAC.BAUD = (baudTimes8 / 8);
+    }
   }
 
 }
