@@ -246,7 +246,7 @@ void RTCPos::setYear(uint8_t year)
   }
 }
 
-void RTCPos::setDate(uint8_t day, uint8_t month, uint8_t year)
+void RTCPos::setDate(uint8_t year, uint8_t month, uint8_t day)
 {
   if (_configured) {
     RTC->MODE2.CLOCK.reg = (  RTC->MODE2.CLOCK.bit.SECOND << RTC_MODE2_CLOCK_SECOND_Pos
@@ -259,7 +259,7 @@ void RTCPos::setDate(uint8_t day, uint8_t month, uint8_t year)
   }
 }
 
-void RTCPos::setDateTime(uint8_t day, uint8_t month, uint8_t year, uint8_t hours, uint8_t minutes, uint8_t seconds)
+void RTCPos::setDateTime(uint8_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t minutes, uint8_t seconds)
 {
   if (_configured) {
     RTC->MODE2.CLOCK.reg = (  seconds << RTC_MODE2_CLOCK_SECOND_Pos
@@ -333,7 +333,7 @@ void RTCPos::setAlarmYear(uint8_t year)
   }
 }
 
-void RTCPos::setAlarmDate(uint8_t day, uint8_t month, uint8_t year)
+void RTCPos::setAlarmDate(uint8_t year, uint8_t month, uint8_t day)
 {
   if (_configured) {
     RTC->MODE2.Mode2Alarm[0].ALARM.reg = ( RTC->MODE2.Mode2Alarm[0].ALARM.bit.SECOND << RTC_MODE2_ALARM_SECOND_Pos
@@ -346,7 +346,7 @@ void RTCPos::setAlarmDate(uint8_t day, uint8_t month, uint8_t year)
   }
 }
 
-void RTCPos::setAlarmDateTime(uint8_t day, uint8_t month, uint8_t year, uint8_t hours, uint8_t minutes, uint8_t seconds)
+void RTCPos::setAlarmDateTime(uint8_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t minutes, uint8_t seconds)
 {
   if (_configured) {
     RTC->MODE2.Mode2Alarm[0].ALARM.reg = ( seconds << RTC_MODE2_ALARM_SECOND_Pos

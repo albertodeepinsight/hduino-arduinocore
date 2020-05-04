@@ -82,8 +82,8 @@ public:
   void setDay(uint8_t day);
   void setMonth(uint8_t month);
   void setYear(uint8_t year);
-  void setDate(uint8_t day, uint8_t month, uint8_t year);
-  void setDateTime(uint8_t day, uint8_t month, uint8_t year, uint8_t hours, uint8_t minutes, uint8_t seconds);
+  void setDate(uint8_t year, uint8_t month, uint8_t day);
+  void setDateTime(uint8_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t minutes, uint8_t seconds);
 
   void setAlarmSeconds(uint8_t seconds);
   void setAlarmMinutes(uint8_t minutes);
@@ -93,8 +93,8 @@ public:
   void setAlarmDay(uint8_t day);
   void setAlarmMonth(uint8_t month);
   void setAlarmYear(uint8_t year);
-  void setAlarmDate(uint8_t day, uint8_t month, uint8_t year);
-  void setAlarmDateTime(uint8_t day, uint8_t month, uint8_t year, uint8_t hours, uint8_t minutes, uint8_t seconds);
+  void setAlarmDate(uint8_t year, uint8_t month, uint8_t day);
+  void setAlarmDateTime(uint8_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t minutes, uint8_t seconds);
 
   /* Epoch Functions */
 
