@@ -364,8 +364,6 @@ uint32_t RTCPos::getEpoch()
   RTC_MODE2_CLOCK_Type clockTime;
   clockTime.reg = RTC->MODE2.CLOCK.reg;
 
-  return RTC->MODE2.CLOCK.bit.SECOND;
-
   struct tm tm;
 
   tm.tm_isdst = -1;
