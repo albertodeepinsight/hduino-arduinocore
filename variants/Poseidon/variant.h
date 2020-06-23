@@ -148,7 +148,35 @@ extern "C"
 #define PIN_LED2           (26u)
 #define LED1               PIN_LED1
 #define LED2               PIN_LED2
+#define PWE0		       (27u)
+#define PWE1		       (19u)
+#define PWE2		       (20u)
+#define SYN                (12u)
+#define PGi                (13u)
+#define BATs               (14u)
+#define RSTdv              (31u)
 
+#define S1_0		   (0u)
+#define S1_1		   (1u)
+#define S1_2		   (2u)
+#define S1_3		   (3u)
+#define S4_0		   (4u)
+#define S4_1		   (5u)
+#define S4_2		   (6u)
+#define S4_3		   (7u)
+#define S3_0		   (8u)
+#define S3_1		   (9u)
+#define S3_2		   (10u)
+#define S3_3		   (11u)
+
+#define SDMO		   (21u)
+#define SDSC		   (22u)
+#define SDCS		   (23u)
+#define SDMI		   (24u)
+
+#define S5_2		   (28u)
+#define S5_3		   (29u)
+#define CONst		   (30u)
 
 /*
  * Analog pins
