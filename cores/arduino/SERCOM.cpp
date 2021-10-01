@@ -29,6 +29,7 @@ SERCOM::SERCOM(Sercom* s)
   sercom = s;
 }
 
+static uint16_t sertimeout = 10000;
 #if 1
 // From https://en.wikipedia.org/wiki/Division_algorithm
 static uint64_t divide64(uint64_t n, uint64_t d)
@@ -89,26 +90,26 @@ void SERCOM::initUART(SercomUartMode mode, SercomUartSampleRate sampleRate, uint
       sampleRateValue = 8;
     }
 
-    if(sercom == SERCOM5){
-        // Asynchronous arithmetic mode
-        // 65535 * ( 1 - sampleRateValue * baudrate / SercomClock);
-        // 65535 - 65535 * (sampleRateValue * baudrate / SercomClock));
-        // sercom->USART.BAUD.reg = 65535.0f * ( 1.0f - (float)(sampleRateValue) * (float)(baudrate) / (float)(SercomCoreClock));  // this pulls in 3KB of floating point math code
-        // make numerator much larger than denominator so result is integer (avoid floating point).
-        uint64_t numerator = ((sampleRateValue * (uint64_t)baudrate) << 32); // 32 bits of shifting ensures no loss of precision.
-        uint64_t ratio = divide64(numerator, SercomClock);
-        uint64_t scale = ((uint64_t)1 << 32) - ratio;
-        uint64_t baudValue = (65536 * scale) >> 32;
-        sercom->USART.BAUD.reg = baudValue;
-    }else{
-        // Asynchronous fractional mode (Table 24-2 in datasheet)
-        //   BAUD = fref / (sampleRateValue * fbaud)
-        // (multiply by 8, to calculate fractional piece)
-        uint32_t baudTimes8 = (SercomClock * 8) / (sampleRateValue * baudrate);
+if(sercom == SERCOM5){
+    // Asynchronous arithmetic mode
+    // 65535 * ( 1 - sampleRateValue * baudrate / SercomClock);
+    // 65535 - 65535 * (sampleRateValue * baudrate / SercomClock));
+    // sercom->USART.BAUD.reg = 65535.0f * ( 1.0f - (float)(sampleRateValue) * (float)(baudrate) / (float)(SercomCoreClock));  // this pulls in 3KB of floating point math code
+    // make numerator much larger than denominator so result is integer (avoid floating point).
+    uint64_t numerator = ((sampleRateValue * (uint64_t)baudrate) << 32); // 32 bits of shifting ensures no loss of precision.
+    uint64_t ratio = divide64(numerator, SercomClock);
+    uint64_t scale = ((uint64_t)1 << 32) - ratio;
+    uint64_t baudValue = (65536 * scale) >> 32;
+    sercom->USART.BAUD.reg = baudValue;
+}else{
+    // Asynchronous fractional mode (Table 24-2 in datasheet)
+    //   BAUD = fref / (sampleRateValue * fbaud)
+    // (multiply by 8, to calculate fractional piece)
+    uint32_t baudTimes8 = (SercomClock * 8) / (sampleRateValue * baudrate);
 
-        sercom->USART.BAUD.FRAC.FP   = (baudTimes8 % 8);
-        sercom->USART.BAUD.FRAC.BAUD = (baudTimes8 / 8);
-    }
+    sercom->USART.BAUD.FRAC.FP   = (baudTimes8 % 8);
+    sercom->USART.BAUD.FRAC.BAUD = (baudTimes8 / 8);
+}
   }
 
 }
@@ -526,9 +527,11 @@ void SERCOM::prepareCommandBitsWire(uint8_t cmd)
   if(isMasterWIRE()) {
     sercom->I2CM.CTRLB.bit.CMD = cmd;
 
-    while(sercom->I2CM.SYNCBUSY.bit.SYSOP)
+    uint16_t cont = 0;
+    while(sercom->I2CM.SYNCBUSY.bit.SYSOP && cont < sertimeout)
     {
       // Waiting for synchronization
+      cont++;
     }
   } else {
     sercom->I2CS.CTRLB.bit.CMD = cmd;
@@ -549,14 +552,18 @@ bool SERCOM::startTransmissionWIRE(uint8_t address, SercomWireReadWriteFlag flag
   // Address Transmitted
   if ( flag == WIRE_WRITE_FLAG ) // Write mode
   {
-    while( !sercom->I2CM.INTFLAG.bit.MB )
+    uint16_t cont = 0;
+    while( !sercom->I2CM.INTFLAG.bit.MB && cont < sertimeout )
     {
       // Wait transmission complete
+      cont++;
     }
+
   }
   else  // Read mode
   {
-    while( !sercom->I2CM.INTFLAG.bit.SB )
+    uint16_t cont = 0;
+    while( !sercom->I2CM.INTFLAG.bit.SB && cont < sertimeout )
     {
         // If the slave NACKS the address, the MB bit will be set.
         // In that case, send a stop condition and return false.
@@ -564,6 +571,7 @@ bool SERCOM::startTransmissionWIRE(uint8_t address, SercomWireReadWriteFlag flag
             sercom->I2CM.CTRLB.bit.CMD = 3; // Stop condition
             return false;
         }
+        cont++;
       // Wait transmission complete
     }
 
@@ -588,14 +596,17 @@ bool SERCOM::sendDataMasterWIRE(uint8_t data)
   //Send data
   sercom->I2CM.DATA.bit.DATA = data;
 
+  uint16_t cont = 0;
   //Wait transmission successful
-  while(!sercom->I2CM.INTFLAG.bit.MB) {
+  while(!sercom->I2CM.INTFLAG.bit.MB && cont < sertimeout) {
 
     // If a bus error occurs, the MB bit may never be set.
     // Check the bus error bit and bail if it's set.
     if (sercom->I2CM.STATUS.bit.BUSERR) {
       return false;
     }
+    //delay(1);
+    cont++;
   }
 
   //Problems on line? nack received?
@@ -679,9 +690,11 @@ uint8_t SERCOM::readDataWIRE( void )
 {
   if(isMasterWIRE())
   {
-    while( sercom->I2CM.INTFLAG.bit.SB == 0 )
+    uint16_t cont = 0;
+    while( sercom->I2CM.INTFLAG.bit.SB == 0 && cont < sertimeout )
     {
       // Waiting complete receive
+      cont++;
     }
 
     return sercom->I2CM.DATA.bit.DATA ;

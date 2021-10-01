@@ -168,6 +168,10 @@ extern "C"
 #define S3_1		   (9u)
 #define S3_2		   (10u)
 #define S3_3		   (11u)
+#define S0_0		   (20u)
+#define S0_1		   (19u)
+#define S0_2		   (18u)
+#define S0_3		   (17u)
 
 #define SDMO		   (21u)
 #define SDSC		   (22u)

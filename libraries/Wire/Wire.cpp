@@ -275,12 +275,12 @@ void TwoWire::onDataReady(void)
       transmissionBegun = sercom->sendDataSlaveWIRE(c);
     } else { //Received data
       if (rxBuffer.isFull()) {
-        sercom->prepareNackBitWIRE(); 
+        sercom->prepareNackBitWIRE();
       } else {
         //Store data
         rxBuffer.store_char(sercom->readDataWIRE());
 
-        sercom->prepareAckBitWIRE(); 
+        sercom->prepareAckBitWIRE();
       }
 
       sercom->prepareCommandBitsWire(0x03);
@@ -293,7 +293,7 @@ void TwoWire::onService(void)
 {
   if ( sercom->isSlaveWIRE() )
   {
-    if(sercom->isStopDetectedWIRE() || 
+    if(sercom->isStopDetectedWIRE() ||
         (sercom->isAddressMatch() && sercom->isRestartDetectedWIRE() && !sercom->isMasterReadOperationWIRE())) //Stop or Restart detected
     {
       sercom->prepareAckBitWIRE();
@@ -338,12 +338,12 @@ void TwoWire::onService(void)
         transmissionBegun = sercom->sendDataSlaveWIRE(c);
       } else { //Received data
         if (rxBuffer.isFull()) {
-          sercom->prepareNackBitWIRE(); 
+          sercom->prepareNackBitWIRE();
         } else {
           //Store data
           rxBuffer.store_char(sercom->readDataWIRE());
 
-          sercom->prepareAckBitWIRE(); 
+          sercom->prepareAckBitWIRE();
         }
 
         sercom->prepareCommandBitsWire(0x03);
@@ -537,4 +537,3 @@ void TwoWire::onService(void)
     }
   #endif
 #endif
-
