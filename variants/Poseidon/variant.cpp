@@ -96,6 +96,7 @@ SERCOM sercom3( SERCOM3 ) ;
 SERCOM sercom4( SERCOM4 ) ;
 SERCOM sercom5( SERCOM5 ) ;
 
+
 #if defined(ONE_UART) || defined(TWO_UART) || defined(THREE_UART)
 Uart SerialW( SERCOM_INSTANCE_SERIALW, PIN_SERIALW_RX, PIN_SERIALW_TX, PAD_SERIALW_RX, PAD_SERIALW_TX ) ;
 
@@ -104,4 +105,5 @@ void SERCOM5_Handler()  {
 }
 
 #endif
+
 

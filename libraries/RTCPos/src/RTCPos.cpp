@@ -58,6 +58,7 @@ void RTCPos::begin(bool resetTime)
 
   RTCMode2_enable();
 
+
   _configured = true;
 
 
